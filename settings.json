@@ -1,0 +1,192 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "skillOverrides": {
+    "algorithmic-art": "off",
+    "angular-architect": "off",
+    "api-designer": "off",
+    "architecture-designer": "off",
+    "ask-questions-if-underspecified": "off",
+    "atlassian-mcp": "off",
+    "audit-context-building": "off",
+    "brand-guidelines": "off",
+    "canvas-design": "off",
+    "chaos-engineer": "off",
+    "claude-api": "off",
+    "cli-developer": "off",
+    "cloud-architect": "off",
+    "code-documenter": "off",
+    "codeql": "off",
+    "cpp-pro": "off",
+    "csharp-developer": "off",
+    "database-optimizer": "off",
+    "debugging-wizard": "off",
+    "devops-engineer": "off",
+    "differential-review": "off",
+    "dispatching-parallel-agents": "off",
+    "django-expert": "off",
+    "doc-coauthoring": "off",
+    "docx": "off",
+    "dotnet-core-expert": "off",
+    "embedded-systems": "off",
+    "entry-point-analyzer": "off",
+    "executing-plans": "off",
+    "fastapi-expert": "off",
+    "feature-forge": "off",
+    "fine-tuning-expert": "off",
+    "finishing-a-development-branch": "off",
+    "fp-check": "off",
+    "fullstack-guardian": "off",
+    "game-developer": "off",
+    "gh-cli": "off",
+    "git-cleanup": "off",
+    "golang-pro": "off",
+    "graphql-architect": "off",
+    "insecure-defaults": "off",
+    "internal-comms": "off",
+    "java-architect": "off",
+    "javascript-pro": "off",
+    "kotlin-specialist": "off",
+    "kubernetes-specialist": "off",
+    "laravel-specialist": "off",
+    "legacy-modernizer": "off",
+    "mcp-builder": "off",
+    "mcp-developer": "off",
+    "microservices-architect": "off",
+    "ml-pipeline": "off",
+    "monitoring-expert": "off",
+    "mutation-testing": "off",
+    "nestjs-expert": "off",
+    "nextjs-developer": "off",
+    "no-ai-slop": "off",
+    "pandas-pro": "off",
+    "pdf": "off",
+    "php-pro": "off",
+    "playwright-expert": "off",
+    "postgres-pro": "off",
+    "pptx": "off",
+    "prompt-engineer": "off",
+    "property-based-testing": "off",
+    "python-pro": "off",
+    "rag-architect": "off",
+    "rails-expert": "off",
+    "react-expert": "off",
+    "react-native-expert": "off",
+    "receiving-code-review": "off",
+    "requesting-code-review": "off",
+    "rust-engineer": "off",
+    "salesforce-developer": "off",
+    "sarif-parsing": "off",
+    "second-opinion": "off",
+    "secure-code-guardian": "off",
+    "security-reviewer": "off",
+    "semgrep": "off",
+    "semgrep-rule-creator": "off",
+    "sharp-edges": "off",
+    "shopify-expert": "off",
+    "skill-creator": "off",
+    "slack-gif-creator": "off",
+    "spark-engineer": "off",
+    "spec-miner": "off",
+    "spec-to-code-compliance": "off",
+    "spring-boot-engineer": "off",
+    "sql-pro": "off",
+    "sre-engineer": "off",
+    "subagent-driven-development": "off",
+    "supabase-rls-patterns": "off",
+    "supply-chain-risk-auditor": "off",
+    "swift-expert": "off",
+    "systematic-debugging": "off",
+    "terraform-engineer": "off",
+    "test-driven-development": "off",
+    "test-master": "off",
+    "the-fool": "off",
+    "theme-factory": "off",
+    "typescript-pro": "off",
+    "using-git-worktrees": "off",
+    "using-superpowers": "off",
+    "variant-analysis": "off",
+    "vibecurb-pixel-perfect": "off",
+    "vue-expert": "off",
+    "vue-expert-js": "off",
+    "web-artifacts-builder": "off",
+    "webapp-testing": "off",
+    "websocket-engineer": "off",
+    "wordpress-pro": "off",
+    "writing-plans": "off",
+    "writing-skills": "off",
+    "xlsx": "off"
+  },
+  "enableWorkflows": true,
+  "statusLine": {
+    "type": "command",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\aljuh\\.claude\\statusline.ps1\""
+  },
+  "footerLinksRegexes": [
+    {
+      "type": "regex",
+      "pattern": "https://github\\.com/(?<owner>[\\w.-]+)/(?<repo>[\\w.-]+)/pull/(?<number>\\d+)",
+      "url": "https://github.com/{owner}/{repo}/pull/{number}",
+      "label": "PR #{number}"
+    }
+  ],
+  "enabledPlugins": {
+    "ponytail@ponytail": true,
+    "cloudflare@cloudflare": false,
+    "vercel@claude-plugins-official": false,
+    "productivity@synced": false,
+    "caveman@caveman": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    }
+  },
+  "spinnerVerbs": {
+    "mode": "append",
+    "verbs": [
+      "Compiling",
+      "Percolating",
+      "Bikeshedding",
+      "Yak-shaving",
+      "Noodling",
+      "Rubber-ducking",
+      "Untangling",
+      "Shipping",
+      "Vibing",
+      "Committing"
+    ]
+  },
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "autoUpdatesChannel": "latest",
+  "theme": "dark",
+  "editorMode": "normal",
+  "verbose": false,
+  "showTurnDuration": true,
+  "terminalProgressBarEnabled": true,
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
+}
