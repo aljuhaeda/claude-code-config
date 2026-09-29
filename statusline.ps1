@@ -73,7 +73,26 @@ $sevenDayStr = if ($null -ne $sevenDay) {
 
 $dimSep = "${Esc}[2m|${Esc}[0m"
 
-$parts = @("[$model]", $costStr, $ctxStr, $clockStr, $durStr)
+# Short mode badges (P:U ponytail, C:U caveman) up front so they survive truncation.
+$claudeDir = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { Join-Path $HOME ".claude" }
+function Mode-Badge($label, $flag, $color) {
+    if (-not (Test-Path -LiteralPath $flag)) { return $null }
+    $m = ([string](Get-Content -LiteralPath $flag -TotalCount 1)).Trim().ToLower()
+    if ($m -eq "off") { return $null }
+    $l = if ($m -match '^[a-z]') { $m.Substring(0,1).ToUpper() } else { "F" }
+    return "${Esc}[38;5;${color}m${label}:${l}${Esc}[0m"
+}
+$cavFlag = Join-Path $claudeDir ".caveman-active"
+$sid = [string]$data.session_id
+if ($sid -match '^[A-Za-z0-9_-]{1,128}$') {
+    $sf = Join-Path $claudeDir ".caveman-sessions\$sid.mode"
+    if (Test-Path -LiteralPath $sf) { $cavFlag = $sf }
+}
+$badges = @((Mode-Badge "P" (Join-Path $claudeDir ".ponytail-active") 173), (Mode-Badge "C" $cavFlag 172)) | Where-Object { $_ }
+
+$parts = @("[$model]")
+if ($badges) { $parts += ($badges -join " ") }
+$parts += @($costStr, $ctxStr, $clockStr, $durStr)
 if ($linesStr) { $parts += $linesStr }
 if ($fiveHourStr -or $sevenDayStr) {
     $planParts = @($fiveHourStr, $sevenDayStr) | Where-Object { $_ }
@@ -82,32 +101,3 @@ if ($fiveHourStr -or $sevenDayStr) {
 if ($dirName) { $parts += "$dirName$branch" }
 
 [Console]::Write(($parts -join " $dimSep "))
-
-function Find-LatestHook($pluginDir, $hookRelPath) {
-    if (-not (Test-Path $pluginDir)) { return $null }
-    $latest = Get-ChildItem $pluginDir -Directory -ErrorAction SilentlyContinue |
-        Sort-Object LastWriteTime -Descending | Select-Object -First 1
-    if (-not $latest) { return $null }
-    $hookPath = Join-Path $latest.FullName $hookRelPath
-    if (Test-Path $hookPath) { return $hookPath }
-    return $null
-}
-
-# Append the ponytail mode badge if active (doesn't read stdin, safe to chain).
-$ponytailScript = Find-LatestHook "$env:USERPROFILE\.claude\plugins\cache\ponytail\ponytail" "hooks\ponytail-statusline.ps1"
-$badgeWritten = $false
-if ($ponytailScript) {
-    [Console]::Write(" $dimSep ")
-    & $ponytailScript
-    $badgeWritten = $true
-}
-
-# Append the caveman mode badge. It reads session_id from stdin, which the
-# parent already consumed above — rewind stdin so the child sees the same JSON.
-$cavemanScript = Find-LatestHook "$env:USERPROFILE\.claude\plugins\cache\caveman\caveman" "src\hooks\caveman-statusline.ps1"
-if ($cavemanScript) {
-    [Console]::Write("  ")
-    if ($badgeWritten) { [Console]::Write("$dimSep ") }
-    [Console]::SetIn([System.IO.StringReader]::new($stdinRaw))
-    & $cavemanScript
-}
